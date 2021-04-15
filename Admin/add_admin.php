@@ -116,7 +116,7 @@ if(isset($_POST['submit'])){
             
         }else{
             $image = rand(111111111,999999999).'_'.$_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'],'../media/product/'.$image);
+            move_uploaded_file($_FILES['image']['tmp_name'],'../media/profile/'.$image);
 
             if($password === $cpassword){
                 $timestamp = get_current_time();
