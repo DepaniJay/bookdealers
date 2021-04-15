@@ -129,24 +129,8 @@ if(isset($_POST['submit'])){
                                     <label for="gender">Gender</label>
                                     <select class="form-control form-control-user" name="gender" id="gender" required>
                                         <option class="bg-secondary text-white" value="">Select</option>
-                                        <?php
-                                        if($gender=='male'){
-                                            ?>
-                                                <option value="male" selected>Male</option>
-                                                <option value="female">Female</option> 
-                                            <?php
-                                        }elseif($gender=='female'){
-                                            ?>
-                                                <option value="male">Male</option>
-                                                <option value="female" selected>Female</option> 
-                                            <?php
-                                        }else{
-                                            ?>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option> 
-                                            <?php
-                                        }
-                                        ?>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option> 
                                     </select>
                                 </div>
 
