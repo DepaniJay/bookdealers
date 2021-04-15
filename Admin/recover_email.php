@@ -21,7 +21,8 @@ if(isset($_POST['submit'])){
 
         // dend email using mail function
         $subject = "Password Reset";
-        $body = "Hi, $firstname"." $lastname. Click here too reset your password http://localhost/PHP%20Projects/Book%20Dealers/reset_pass.php?token=$token ";
+        $body = "Hi, $firstname"." $lastname. Click here too reset your password https://bookdealers.herokuapp.com/Admin/reset_pass.php?token=$token ";
+        // $body = "Hi, $firstname"." $lastname. Click here too reset your password http://localhost/Book%20Dealers/Admin/reset_pass.php?token=$token ";
         $sender_email = "From: jdcoder007@gmail.com";
 
         if(mail($email, $subject, $body, $sender_email)){
