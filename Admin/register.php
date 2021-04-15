@@ -39,7 +39,8 @@ if(isset($_POST['submit'])){
 
             if($iquery){
                 $subject = "Email Activation";
-                $body = "Hi, $name Click here too activate your account http://localhost/Book%20Dealers/Admin/activate.php?token=$token";
+                // $body = "Hi, $name Click here too activate your account http://localhost/Book%20Dealers/Admin/activate.php?token=$token";
+                $body = "Hi, $name Click here too activate your account https://bookdealers.herokuapp.com/Admin/activate.php?token=$token";
                 $sender_email = "From: jdcoder007@gmail.com";
 
                 if(mail($email, $subject, $body, $sender_email)){
