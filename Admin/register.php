@@ -3,7 +3,7 @@
 // include connection and function files
 require('includes/connection_inc.php');
 include('includes/functions_inc.php');
-
+include('smtp/PHPMailerAutoload.php');
 $_SESSION['error'] = '';
 
 // check user click on submit button or not
@@ -41,9 +41,8 @@ if(isset($_POST['submit'])){
                 $subject = "Email Activation";
                 // $body = "Hi, $name Click here too activate your account http://localhost/Book%20Dealers/Admin/activate.php?token=$token";
                 $body = "Hi, $name Click here too activate your account https://bookdealers.herokuapp.com/Admin/activate.php?token=$token";
-                $sender_email = "From: jdcoder007@gmail.com";
-
-                if(mail($email, $subject, $body, $sender_email)){
+                $smtp_mailer=smtp_mailer($email,$subject,$body);
+                if($smtp_mailer=='Sent'){
                     $_SESSION['activate_msg'] = "Check your mail to activate your account $email";
                     moveCurrentPageToOtherPage('login.php');
                 }else{

@@ -236,4 +236,32 @@ function get_review_details($con,$uid,$pid,$limit=''){
     }
     return $data;   
 }
+
+function smtp_mailer($to,$subject,$body){
+	$mail = new PHPMailer(); 
+	// $mail->SMTPDebug  = 3;
+	$mail->IsSMTP(); 
+	$mail->SMTPAuth = true; 
+	$mail->SMTPSecure = 'tls'; 
+	$mail->Host = "smtp.gmail.com";
+	$mail->Port = 587; 
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
+	$mail->Username = "jdcoder007@gmail.com";
+	$mail->Password = "jdcodersecondary@007";
+	$mail->SetFrom("jdcoder007@gmail.com");
+	$mail->Subject = $subject;
+	$mail->Body =$body;
+	$mail->AddAddress($to);
+	$mail->SMTPOptions=array('ssl'=>array(
+		'verify_peer'=>false,
+		'verify_peer_name'=>false,
+		'allow_self_signed'=>false
+	));
+	if(!$mail->Send()){
+		echo $mail->ErrorInfo;
+	}else{
+		return 'Sent';
+	}
+}
 ?>

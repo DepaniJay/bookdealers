@@ -1,6 +1,6 @@
 <?php 
 require('top.php');
-
+include('smtp/PHPMailerAutoload.php');
 if(isset($_POST['submit'])){
     $email = get_safe_value($con,$_POST['email']);
 
@@ -22,9 +22,8 @@ if(isset($_POST['submit'])){
         $subject = "Password Reset";
         // $body = "Hi, $firstname"." $lastname. Click here too reset your password http://localhost/Book%20Dealers/reset_pass.php?token=$token ";
         $body = "Hi, $firstname"." $lastname. Click here too reset your password https://bookdealers.herokuapp.com/reset_pass.php?token=$token ";
-        $sender_email = "From: jdcoder007@gmail.com";
- 
-        if(mail($email, $subject, $body, $sender_email)){
+        $smtp_mailer=smtp_mailer($email,$subject,$body); 
+        if($smtp_mailer=='Sent'){
             $_SESSION['activate_msg'] = "Check your mail to reset your password $email";
             moveCurrentPageToOtherPage('login.php');
         }else{
