@@ -17,7 +17,7 @@ $con = mysqli_connect($server,$username,$password,$db,$port);
 // $db = "book_dealers";
 // $con = mysqli_connect($server,$username,$password,$db);
 
-define('SITE_PATH','http://localhost/Book%20Dealers/');
+define('SITE_PATH','https://bookdealers.herokuapp.com/');
 
 
 
