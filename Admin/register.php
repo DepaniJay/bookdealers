@@ -1,7 +1,7 @@
 <?php 
 
 // include connection and function files
-require('includes/connection_inc.php');
+// require('includes/connection_inc.php');
 include('includes/functions_inc.php');
 include('smtp/PHPMailerAutoload.php');
 $_SESSION['error'] = '';
@@ -29,20 +29,13 @@ if(isset($_POST['submit'])){
     // mysqli_num_rows check how many row is available in table
     $count = mysqli_num_rows($query);
 
-    if($_FILES['image']['type']!='' && ($_FILES['image']['type']!='image/png' && $_FILES['image']['type']!='image/jpg' && $_FILES['image']['type']!='image/jpeg')){
-        $_SESSION['error'] = "Please selcet only png,jpg and jpeg image formate ";
-    }
-
     if($count>0){
         $_SESSION['error'] = "Email already exists";
     }else{
         if($password === $cpassword){
             $timestamp = get_current_time();
 
-            $image = rand(111111111,999999999).'_'.$_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'],'../media/profile/'.$image);
-
-            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','1','$image','$gender','$timestamp')";
+            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','1','defult_profile_image.png','$gender','$timestamp')";
             $iquery = mysqli_query($con,$insertquery);
 
             if($iquery){
@@ -118,11 +111,6 @@ if(isset($_POST['submit'])){
 
                                 <div class="form-group">
                                     <input type="number" name="mobile" class="form-control form-control-user" id="exampleInputMobile" placeholder="Mobile No" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="image">Profile Image</label>
-                                    <input type="file" name="image" class="form-control" id="image" required/>
                                 </div>
 
                                 <div class="form-group">
