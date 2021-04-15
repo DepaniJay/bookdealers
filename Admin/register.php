@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
             $image = rand(111111111,999999999).'_'.$_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'],'../media/product/'.$image);
 
-            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','1','jay.jpg','$gender','$timestamp')";
+            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','1','$image','$gender','$timestamp')";
             $iquery = mysqli_query($con,$insertquery);
 
             if($iquery){
