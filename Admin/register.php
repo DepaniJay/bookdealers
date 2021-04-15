@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     // genrete uniqe token 
     $token = bin2hex(random_bytes(15));
 
-    $selectquery = "select * from authentication where email='$email' ";
+    $selectquery = "select * from admin_users where email='$email' ";
     $query = mysqli_query($con,$selectquery);
 
     // mysqli_num_rows check how many row is available in table
