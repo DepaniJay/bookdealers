@@ -92,7 +92,7 @@ if(isset($_POST['submit_payment'])){
         $final_price='';
     }
     
-    mysqli_query($con,"insert into `orders`(`user_id`, `address`, `city`, `state`, `country`, `pincode`, `payment_type`, `total_price`,`old_total_price`, `payment_status`, `order_status`,`coupon_id`,`coupon_value`,`coupon_code`,'added_on') values('$user_id','$address','$city','$state','$country','$pincode','$payment_type','$total_price','$cart_total','$payment_status','$order_status','$coupon_id','$coupon_value','$coupon_code','$timestamp')");
+    mysqli_query($con,"insert into `orders`(`user_id`, `address`, `city`, `state`, `country`, `pincode`, `payment_type`, `total_price`,`old_total_price`, `payment_status`, `order_status`,`length`,`breadth`,`height`,`weight`,`ship_order_id`,`ship_shipment_id`,`coupon_id`,`coupon_value`,`coupon_code`,'added_on') values('$user_id','$address','$city','$state','$country','$pincode','$payment_type','$total_price','$cart_total','$payment_status','$order_status','0','0','0','0','0','0','$coupon_id','$coupon_value','$coupon_code','$timestamp')");
 
     $order_id = mysqli_insert_id($con);
 
