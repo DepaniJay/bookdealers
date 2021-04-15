@@ -121,11 +121,13 @@ if(isset($_POST['submit'])){
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="file" name="image" class="form-control form-control-user" id="image" placeholder=" Select Profile Image" required/>
+                                    <label for="image">Profile Image</label>
+                                    <input type="file" name="image" class="form-control form-control-user" id="image" required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <select class="form-control form-control-user" name="gender" id="gender" placeholder="Select Your Gender" required>
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control form-control-user" name="gender" id="gender" required>
                                         <option class="bg-secondary text-white" value="">Select</option>
                                         <?php
                                         if($gender=='male'){
