@@ -1,0 +1,12 @@
+=>  add fontawesome icon to login and register page.
+=>  add show password button
+=> Make Complete responsive admin page
+=> add register with google and register with facebook
+=> add same page add and edit categories option in development time some error occur in edit  
+=> add invoice page and create proper invoice page
+=> add payment getway 
+=> add otp varification for user
+=> add sent email option in code 
+=> add invoice mail system when user place order
+=> add rating in product
+=> download order invoice in pdf formate
