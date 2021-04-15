@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     // genrete uniqe token 
     $token = bin2hex(random_bytes(15));
 
-    $selectquery = "select * from admin_users where email='$email' ";
+    $selectquery = "select * from `admin_users` where email='$email' ";
     $query = mysqli_query($con,$selectquery);
 
     // mysqli_num_rows check how many row is available in table
@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
         if($password === $cpassword){
             $timestamp = get_current_time();
 
-            $insertquery = "insert into admin_users(name,email,mobile,password,cpassword,token,adminlevel,status,added_on) values('$name','$email','$mobile','$pass','$cpass','$token','Admin','0','$timestamp')";
+            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','0','jay.jpg','male','$timestamp')";
             $iquery = mysqli_query($con,$insertquery);
 
             if($iquery){
