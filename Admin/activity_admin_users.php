@@ -4,9 +4,14 @@ include('includes/header.php');
 include('includes/navbar.php');
 isAdmin();
 
+
 $sql = "select activity_admin_users.login_time,admin_users.id,admin_users.name,admin_users.email,admin_users.mobile from activity_admin_users,admin_users where activity_admin_users.user_id=admin_users.id order by activity_admin_users.id desc";
 $res = mysqli_query($con, $sql);
-
+$count=mysqli_num_rows($res);
+if($count>100){
+    $sql_delete="DELETE FROM `activity_admin_users` WHERE id<'101'";
+    $res_delete=mysqli_query($con,$sql_delete);
+}
 
 ?>
  
