@@ -1,7 +1,7 @@
 <?php 
 
 // include connection and function files
-// require('includes/connection_inc.php');
+require('includes/connection_inc.php');
 include('includes/functions_inc.php');
 include('smtp/PHPMailerAutoload.php');
 $_SESSION['error'] = '';
