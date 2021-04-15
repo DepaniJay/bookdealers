@@ -11,6 +11,7 @@ if(isset($_POST['submit'])){
     $name = get_safe_value($con,$_POST['name']);
     $email = get_safe_value($con,$_POST['email']);
     $mobile = get_safe_value($con,$_POST['mobile']);
+    $gender = get_safe_value($con,$_POST['gender']);
     $password = get_safe_value($con,$_POST['password']);
     $cpassword = get_safe_value($con,$_POST['cpassword']);
 
@@ -28,13 +29,20 @@ if(isset($_POST['submit'])){
     // mysqli_num_rows check how many row is available in table
     $count = mysqli_num_rows($query);
 
+    if($_FILES['image']['type']!='' && ($_FILES['image']['type']!='image/png' && $_FILES['image']['type']!='image/jpg' && $_FILES['image']['type']!='image/jpeg')){
+        $_SESSION['error'] = "Please selcet only png,jpg and jpeg image formate ";
+    }
+
     if($count>0){
         $_SESSION['error'] = "Email already exists";
     }else{
         if($password === $cpassword){
             $timestamp = get_current_time();
 
-            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','0','jay.jpg','male','$timestamp')";
+            $image = rand(111111111,999999999).'_'.$_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'],'../media/product/'.$image);
+
+            $insertquery = "INSERT INTO `admin_users`(`name`,`email`,`mobile`,`password`,`cpassword`,`token`,`adminlevel`,`status`,`image`,`gender`,`added_on`) VALUES('$name','$email','$mobile','$pass','$cpass','$token','Admin','0','jay.jpg','$gender','$timestamp')";
             $iquery = mysqli_query($con,$insertquery);
 
             if($iquery){
@@ -110,6 +118,36 @@ if(isset($_POST['submit'])){
 
                                 <div class="form-group">
                                     <input type="number" name="mobile" class="form-control form-control-user" id="exampleInputMobile" placeholder="Mobile No" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="image">Profile Image</label>
+                                    <input type="file" name="image" class="form-control form-control-user" id="image" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control form-control-user" name="gender" id="gender" required>
+                                        <option class="bg-secondary text-white" value="">Select</option>
+                                        <?php
+                                        if($gender=='male'){
+                                            ?>
+                                                <option value="male" selected>Male</option>
+                                                <option value="female">Female</option> 
+                                            <?php
+                                        }elseif($gender=='female'){
+                                            ?>
+                                                <option value="male">Male</option>
+                                                <option value="female" selected>Female</option> 
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option> 
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
 
                                 <div class="form-group row">
